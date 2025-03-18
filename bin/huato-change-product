@@ -1,0 +1,46 @@
+#!/system/bin/sh
+
+# Fungsi untuk mencetak teks dengan warna
+ui_print() {
+    echo "$1"
+}
+
+# Menampilkan peringatan sebelum melanjutkan
+ui_print "📢 Perubahan berikut akan dilakukan pada perangkat Anda:"
+ui_print "Contoh:"
+ui_print "ro.product.manufacturer=Samsung"
+ui_print "ro.product.brand=Samsung"
+ui_print "ro.product.marketname=Galaxy S25 Ultra"
+ui_print "ro.product.model=SM-S938BAKCXID"
+ui_print "Apakah Anda yakin ingin melanjutkan? (y/n)"
+read -p "Masukkan pilihan (y/n): " pilihan
+
+if [ "$pilihan" != "y" ]; then
+    ui_print "❌ Pembatalan. Skrip dihentikan."
+    exit 1
+fi
+
+# Pilihan untuk mengubah informasi perangkat
+ui_print "🔧 Memulai perubahan perangkat..."
+
+# Menampilkan menu untuk perubahan informasi
+echo "1️⃣ ro.product.manufacturer"
+echo "2️⃣ ro.product.brand"
+echo "3️⃣ ro.product.marketname"
+echo "4️⃣ ro.product.model"
+read -p "Masukkan nomor pilihan (1-4): " pilihan
+
+case $pilihan in
+    1) read -p "Masukkan nilai baru untuk ro.product.manufacturer: " nilai
+       sed -i "s/^ro.product.manufacturer=.*/ro.product.manufacturer=$nilai/" /system/build.prop ;;
+    2) read -p "Masukkan nilai baru untuk ro.product.brand: " nilai
+       sed -i "s/^ro.product.brand=.*/ro.product.brand=$nilai/" /system/build.prop ;;
+    3) read -p "Masukkan nilai baru untuk ro.product.marketname: " nilai
+       sed -i "s/^ro.product.marketname=.*/ro.product.marketname=$nilai/" /system/build.prop ;;
+    4) read -p "Masukkan nilai baru untuk ro.product.model: " nilai
+       sed -i "s/^ro.product.model=.*/ro.product.model=$nilai/" /system/build.prop ;;
+    *) ui_print "❌ Pilihan tidak valid!" ;;
+esac
+
+ui_print "✅ Perubahan berhasil disimpan! Silakan reboot perangkat untuk melihat efeknya."
+exit 0

@@ -1,0 +1,6 @@
+# Custom build.prop untuk modul ini
+
+ro.product.manufacturer=Samsung
+ro.product.brand=Samsung
+ro.product.model=SM-S938BAKCXID
+ro.product.marketname=Galaxy S25 Ultra

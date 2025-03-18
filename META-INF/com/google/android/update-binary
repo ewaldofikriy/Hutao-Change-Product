@@ -1,0 +1,26 @@
+#!/sbin/sh
+
+# Initialize
+umask 022
+
+# Print message to user
+ui_print() { echo "$1"; }
+
+# Ensure the script runs with proper permissions
+if [ "$(id -u)" -ne 0 ]; then
+    ui_print "Script should be run as root."
+    exit 1
+fi
+
+# Extract the necessary files
+print_modname() {
+    ui_print "*********************************************************"
+    ui_print "BY ewaldofikriy"
+    ui_print "Mengubah model perangkat Anda menjadi Samsung S25 Ultra"
+    ui_print "Jika terjadi masalah, harap masuk ke recovery dan hapus modul ini."
+    ui_print "Sebelum update sistem, harap nonaktifkan modul ini!!!"
+    ui_print "Selesai, reboot untuk menerapkan perubahan"
+    ui_print "*********************************************************"
+}
+
+print_modname
