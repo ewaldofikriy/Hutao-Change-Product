@@ -1,4 +1,4 @@
-#!/sbin/sh
+#!/system/bin/sh
 
 # Fungsi untuk menampilkan pesan
 ui_print() {
